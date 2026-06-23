@@ -31,13 +31,18 @@ def stun(target: str, power: int) -> str:
 def con(target: str, _: int):
     return True if target[0] == 'A' else False
 
+
 if __name__ == "__main__":
 
     heal_with_stun = spell_combiner(heal, stun)
     heal_amplified = power_amplifier(heal, 2)
     heal_conditional = conditional_caster(con, heal)
+    spell_sequence_val = spell_sequence([heal, stun])
+
     print(heal_with_stun("Paul", 10))
     print(heal_amplified("Herbert", 10))
 
     print(heal_conditional("Herbert", 12))
     print(heal_conditional("Albert", 12))
+
+    print(spell_sequence_val("herbert", 20))
