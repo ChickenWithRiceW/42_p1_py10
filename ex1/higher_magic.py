@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     print("\nTesting spell conditional...")
     print(f"Condition not met: {heal_conditional('Herbert', 12)}")
-    print(f"Condition met: {heal_conditional('Herbert', 12)}")
+    print(f"Condition met: {heal_conditional('Albert', 12)}")
 
     print("\nTesting spell sequence...")
     print(*spell_sequence_val("Herbert", 20), sep=" and ")

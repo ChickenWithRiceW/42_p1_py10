@@ -1,20 +1,20 @@
 import functools
 import operator
-from typing import Callable, Any
+from collections.abc import Callable
+from typing import Any
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
-    operations: dict = {
+    operations: dict[str, Callable[[int, int], int]] = {
         "add": operator.add,
         "multiply": operator.mul,
         "max": max,
         "min": min
     }
+    if operation not in operations:
+        raise ValueError("operation not supported")
     if not spells:
         return 0
-    if operation not in operations.keys():
-        print("operation not supported")
-        return -1
     return functools.reduce(operations[operation], spells)
 
 
@@ -48,15 +48,15 @@ def spell_dispatcher() -> Callable[[Any], str]:
 
     @cast.register(int)
     def _(spell: int) -> str:
-        return f"Damage spell deals {spell} damage"
+        return f"Damage spell: {spell} damage"
 
     @cast.register(str)
     def _(spell: str) -> str:
-        return f"Enchanting with {spell}"
+        return f"Enchantment: {spell}"
 
     @cast.register(list)
     def _(spell: list[Any]) -> str:
-        return f"Casting {len(spell)} spells"
+        return f"Multi-cast: {len(spell)} spells"
 
     return cast
 

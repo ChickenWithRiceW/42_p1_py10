@@ -25,17 +25,11 @@ def enchantment_factory(enchantment_type: str) -> Callable:
 
 
 def memory_vault() -> dict[str, Callable]:
-    memory = {}
-
-    def store(key: Any, value: Any) -> None:
-        memory[key] = value
-
-    def recall(key: Any) -> Any:
-        try:
-            return memory[key]
-        except KeyError:
-            return ("Memory not found")
-    return {"store": store, "recall": recall}
+    memory: dict[str, Any] = {}
+    return {
+        "store": lambda key, value: memory.update({key: value}),
+        "recall": lambda key: memory.get(key, "Memory not found")
+    }
 
 
 if __name__ == "__main__":
@@ -64,6 +58,3 @@ if __name__ == "__main__":
     mem['store']("secret", 42)
     print(f"Recall 'secret': {mem['recall']('secret')}")
     print(f"Recall 'unknown': {mem['recall']('unknown')}")
-
-
-
