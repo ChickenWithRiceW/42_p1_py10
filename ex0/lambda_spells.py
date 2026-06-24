@@ -11,17 +11,32 @@ def spell_transformer(spells: list[str]) -> list[str]:
 
 
 def mage_stats(mages: list[dict]) -> dict:
-    res = {}
-    res["max_power"] = max(key=lambda x: x["power"], *mages)
-    res["min_power"] = min(key=lambda x: x["power"], *mages)
-    res["avg_power"] = round(sum(i["power"] for i in mages), 2)
+    return {
+        "max_power": max(key=lambda x: x["power"], *mages),
+        "min_power": min(key=lambda x: x["power"], *mages),
+        "avg_power": round(sum(i["power"] for i in mages), 2)
+    }
 
-# if __name__ == "__main__":
 
-    # Use the data_generator for this exercise to test it
+if __name__ == "__main__":
 
-    # print(artifact_sorter(artifacts))
-    # print()
-    # print(power_filter(mages, 10))
-    # print()
-    # print(spell_transformer(spells))
+    # Lambda Sanctum Test Data
+    artifacts = [{'name': 'Earth Shield', 'power': 97, 'type': 'accessory'},
+                 {'name': 'Shadow Blade', 'power': 84, 'type': 'armor'},
+                 {'name': 'Crystal Orb', 'power': 97, 'type': 'armor'},
+                 {'name': 'Fire Staff', 'power': 86, 'type': 'armor'}]
+
+    mages = [{'name': 'Jordan', 'power': 70, 'element': 'water'},
+             {'name': 'Jordan', 'power': 93, 'element': 'ice'},
+             {'name': 'Riley', 'power': 56, 'element': 'shadow'},
+             {'name': 'Casey', 'power': 74, 'element': 'ice'},
+             {'name': 'Riley', 'power': 55, 'element': 'lightning'}]
+
+    spells = ['tornado', 'meteor', 'fireball', 'earthquake']
+    print("Testing artifact sorter...")
+
+    print(artifact_sorter(artifacts))
+    print()
+    print(power_filter(mages, 10))
+    print()
+    print(spell_transformer(spells))
