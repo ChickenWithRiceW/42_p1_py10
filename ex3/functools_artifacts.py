@@ -12,7 +12,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
         "min": min
     }
     if operation not in operations:
-        raise ValueError("operation not supported")
+        raise ValueError("Operation not supported")
     if not spells:
         return 0
     return functools.reduce(operations[operation], spells)

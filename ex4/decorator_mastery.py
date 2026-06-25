@@ -38,12 +38,6 @@ def power_validator(min_power: int) -> Callable:
     return decorator
 
 
-# Just test stuff for now
-@power_validator(10)
-def test() -> None:
-    pass
-
-
 def retry_spell(max_attempts: int) -> Callable:
 
     def decorator(func: Callable) -> Callable:

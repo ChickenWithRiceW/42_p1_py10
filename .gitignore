@@ -1,6 +1,0 @@
-# ignore all
-*
-
-# But not this
-!*.py
-!*/
